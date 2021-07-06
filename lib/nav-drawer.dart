@@ -16,6 +16,21 @@ class DrawerWidget extends StatelessWidget {
               Icons.share, 'Shared with me', () => print('Tap Shared with me')),
           drawerItem(Icons.access_time, 'Recent', () => print('Tap Recent')),
           drawerItem(Icons.delete_sweep, 'Trash', () => print('Tap Trash')),
+
+          Divider(
+            height: 25,
+            thickness: 6,
+          ),
+
+          Padding(
+            padding: EdgeInsets.only(left: 20.0, top: 10.0, bottom: 10.0),
+            child: Text('Labels',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black54,
+                )),
+          ),
+          drawerItem(Icons.bookmark, 'Bookmark', () => print('Tap Bookmark')),
         ],
       ),
     );
