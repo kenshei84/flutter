@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'pages/myfiles-page.dart';
+import 'pages/sharedwithme-page.dart';
+import 'pages/recent-page.dart';
+import 'pages/trash-page.dart';
+import 'pages/bookmark-page.dart';
+import 'pages/account-page.dart';
+import 'package:get/get.dart';
 
 class DrawerWidget extends StatelessWidget {
   @override
@@ -8,14 +15,28 @@ class DrawerWidget extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           // disini letak header
-          drawerHeader(),
+          drawerHeader(context),
           // disini letak body
           drawerItem(
-              Icons.folder_open, 'My Files', () => print('Tap My Files')),
+              Icons.folder,
+              'My Files',
+              () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => MyFilesPage()))),
           drawerItem(
-              Icons.share, 'Shared with me', () => print('Tap Shared with me')),
-          drawerItem(Icons.access_time, 'Recent', () => print('Tap Recent')),
-          drawerItem(Icons.delete_sweep, 'Trash', () => print('Tap Trash')),
+              Icons.share,
+              'Shared with me',
+              () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => SharedWithMePage()))),
+          drawerItem(
+              Icons.access_time_filled,
+              'Recent',
+              () => Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => RecentPage()))),
+          drawerItem(
+              Icons.delete,
+              'Trash',
+              () => Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => TrashPage()))),
 
           Divider(
             height: 25,
@@ -30,20 +51,33 @@ class DrawerWidget extends StatelessWidget {
                   color: Colors.black54,
                 )),
           ),
-          drawerItem(Icons.bookmark, 'Bookmark', () => print('Tap Bookmark')),
+          drawerItem(
+              Icons.bookmark,
+              'Bookmark',
+              () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => BookmarkPage()))),
         ],
       ),
     );
   }
 
-  Widget drawerHeader() {
+  Widget drawerHeader(BuildContext context) {
     return UserAccountsDrawerHeader(
       accountName: Text('Yusuf Rizal'),
       accountEmail: Text('rizal@inixindo.co.id'),
-      currentAccountPicture: ClipOval(
-        child: Image(
-          image: AssetImage('assets/images/user_1.png'),
-          fit: BoxFit.cover,
+      // onDetailsPressed: () {},
+      currentAccountPicture: GestureDetector(
+        onTap: () {
+          print('Account di tap');
+          // Get.to(AccountPage());
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => AccountPage()));
+        },
+        child: ClipOval(
+          child: Image(
+            image: AssetImage('assets/images/user_1.png'),
+            fit: BoxFit.cover,
+          ),
         ),
       ),
       otherAccountsPictures: [

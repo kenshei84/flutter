@@ -4,6 +4,9 @@ import 'nav-drawer.dart';
 void main() {
   runApp(MaterialApp(
     title: 'Belajar NavDrawer',
+    theme: ThemeData(
+      primarySwatch: Colors.teal,
+    ),
     home: BelajarNavigationDrawer(),
   ));
 }
